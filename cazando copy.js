@@ -14,10 +14,10 @@ const ANCHOCOMIDA = 30;
 const ALTURACOMIDA = 30;
 
 
-document.getElementById("btnArriba").onclick = () => movergato("arriba");
-document.getElementById("btnAbajo").onclick = () => movergato("abajo");
-document.getElementById("btnIzquierda").onclick = () => movergato("izquierda");
-document.getElementById("btnDerecha").onclick = () => movergato("derecha");
+document.getElementById("btnArriba").onclick = () => moverArriba("arriba");
+document.getElementById("btnAbajo").onclick = () => moverAbajo("abajo");
+document.getElementById("btnIzquierda").onclick = () => moverIzquierda();
+document.getElementById("btnDerecha").onclick = () => moverDerecha("derecha");
  
 function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
@@ -32,13 +32,38 @@ function graficarGato() {
     graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
 }; 
 
-function movergato (direccion) {
-    if (direccion === "arriba") gatoY -= VELOCIDAD;     
-    if (direccion === "abajo") gatoY += VELOCIDAD;     
-    if (direccion === "izquierda") gatoX -= VELOCIDAD;     
-    if (direccion === "derecha") gatoX += VELOCIDAD;
+function limpiarCanva() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function moverIzquierda() {
+    gatoX -= 10;
+    limpiarCanva();
     graficarGato();
-};
+    graficarComida();
+}
+
+function moverDerecha() {
+    gatoX += 10;
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+}
+
+function moverArriba() {
+    gatoY -= 10;
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+}
+
+function moverAbajo() {
+    gatoY += 10;
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+}
+
  
 function iniciarJuego(){
     comidaX = (canvas.width) - (ANCHOGATO / 2);
@@ -50,7 +75,6 @@ function iniciarJuego(){
 
     graficarComida();
     graficarGato();
-    movergato();
 }
  
 

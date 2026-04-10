@@ -1,4 +1,4 @@
-let canvas = document.getElementById("pantalla");
+let canvas = document.getElementById("areaJuego");
 let ctx = canvas.getContext("2d");
 // variables y contantes del Gato
 let gatoX = 0;
@@ -24,13 +24,13 @@ function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillRect(x, y, ancho, alto);
 };
  
-function graficarGato() {
-    graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
-};
- 
 function graficarComida() {
     graficarRectangulo(comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA, "#ff0000");
 };
+
+function graficarGato() {
+    graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
+}; 
 
 function movergato (direccion) {
     if (direccion === "arriba") gatoY -= VELOCIDAD;     
@@ -41,12 +41,16 @@ function movergato (direccion) {
 };
  
 function iniciarJuego(){
+    comidaX = (canvas.width) - (ANCHOGATO / 2);
+    comidaY = (canvas.height) - (ALTURAGATO / 2);
+
     gatoX = (canvas.width / 2) - (ANCHOGATO / 2);
     gatoY = (canvas.height / 2) - (ALTURAGATO / 2);
 
-    movergato();
-    graficarGato();
+
     graficarComida();
+    graficarGato();
+    movergato();
 }
  
 

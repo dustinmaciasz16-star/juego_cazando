@@ -6,6 +6,7 @@ let gatoY = 0;
 const ANCHOGATO = 50;
 const ALTURAGATO = 50;
 const VELOCIDAD = 10;
+
  
 // variable y constantes de la comida
 let comidaX = 0;
@@ -29,58 +30,49 @@ function graficarComida() {
 };
 
 function graficarGato() {
-    // Limitar eje X
-    if (gatoX < 0) {
-        gatoX = 0;
-    }
-    if (gatoX + ANCHOGATO > canvas.width) {
-        gatoX = canvas.width - ANCHOGATO;
-    }
-
-    // Limitar eje Y
-    if (gatoY < 0) {
-        gatoY = 0;
-    }
-    if (gatoY + ALTURAGATO > canvas.height) {
-        gatoY = canvas.height - ALTURAGATO;
-    }
     graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
 }; 
 
 function limpiarCanva() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
+const LIMITE_X = canvas.width - ANCHOGATO;
+const LIMITE_Y = canvas.height - ALTURAGATO;
 
-function gatoComida() {
-
+function moverIzquierda(){
+    if(gatoX>0){
+        gatoX-=10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+    }
 }
-
-function moverIzquierda() {
-    gatoX -= 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
+ 
+function moverDerecha(){
+    if (gatoX<LIMITE_X){
+        gatoX += 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+    }
 }
-
-function moverDerecha() {
-    gatoX += 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
+ 
+function moverArriba(){
+    if(gatoY>0){
+        gatoY -= 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+    }
 }
-
-function moverArriba() {
-    gatoY -= 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
-}
-
-function moverAbajo() {
-    gatoY += 10;
-    limpiarCanva();
-    graficarGato();
-    graficarComida();
+ 
+function moverAbajo(){
+    if(gatoY<LIMITE_Y){
+        gatoY += 10;
+        limpiarCanva();
+        graficarGato();
+        graficarComida();
+    }
 }
 
  

@@ -19,17 +19,17 @@ document.getElementById("btnAbajo").onclick = () => movergato("abajo");
 document.getElementById("btnIzquierda").onclick = () => movergato("izquierda");
 document.getElementById("btnDerecha").onclick = () => movergato("derecha");
  
-function graficar(x, y, ancho, alto, color) {
+function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
     ctx.fillRect(x, y, ancho, alto);
 };
  
 function graficarGato() {
-    graficar(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
+    graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
 };
  
 function graficarComida() {
-    graficar(comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA, "#ff0000");
+    graficarRectangulo(comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA, "#ff0000");
 };
 
 function movergato (direccion) {

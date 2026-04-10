@@ -43,14 +43,15 @@ function dibujarTodo() {
     limpiarCanva();
     graficarGato();
     graficarComida();
-
-    if (detectarCollision){
+    if (detectarCollision()){
         alert("El gato se comio la comida");
+        comidaX = generarAleatorio(0, canvas.width - ANCHOCOMIDA);
+        comidaY = generarAleatorio(0, canvas.height - ALTURACOMIDA);
     }
 }
 
 function detectarCollision() {
-    if(
+    return(
         gatoX < comidaX + ANCHOCOMIDA &&
         gatoX + ANCHOGATO > comidaX &&
         gatoY < comidaY + ALTURACOMIDA &&

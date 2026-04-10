@@ -6,6 +6,8 @@ let gatoY = 0;
 const ANCHOGATO = 50;
 const ALTURAGATO = 50;
 const VELOCIDAD = 10;
+const LIMITE_X = canvas.width - ANCHOGATO;
+const LIMITE_Y = canvas.height - ALTURAGATO;
 
  
 // variable y constantes de la comida
@@ -15,10 +17,10 @@ const ANCHOCOMIDA = 30;
 const ALTURACOMIDA = 30;
 
 
-document.getElementById("btnArriba").onclick = () => moverArriba("arriba");
-document.getElementById("btnAbajo").onclick = () => moverAbajo("abajo");
+document.getElementById("btnArriba").onclick = () => moverArriba();
+document.getElementById("btnAbajo").onclick = () => moverAbajo();
 document.getElementById("btnIzquierda").onclick = () => moverIzquierda();
-document.getElementById("btnDerecha").onclick = () => moverDerecha("derecha");
+document.getElementById("btnDerecha").onclick = () => moverDerecha();
  
 function graficarRectangulo(x, y, ancho, alto, color) {
     ctx.fillStyle = color;
@@ -36,42 +38,41 @@ function graficarGato() {
 function limpiarCanva() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 }
-const LIMITE_X = canvas.width - ANCHOGATO;
-const LIMITE_Y = canvas.height - ALTURAGATO;
+
+function dibujarTodo() {
+    limpiarCanva();
+    graficarGato();
+    graficarComida();
+}
+
+
+
 
 function moverIzquierda(){
     if(gatoX>0){
-        gatoX-=10;
-        limpiarCanva();
-        graficarGato();
-        graficarComida();
+        gatoX-= VELOCIDAD;
+        dibujarTodo();
     }
 }
  
 function moverDerecha(){
     if (gatoX<LIMITE_X){
-        gatoX += 10;
-        limpiarCanva();
-        graficarGato();
-        graficarComida();
+        gatoX += VELOCIDAD;
+        dibujarTodo();
     }
 }
  
 function moverArriba(){
     if(gatoY>0){
-        gatoY -= 10;
-        limpiarCanva();
-        graficarGato();
-        graficarComida();
+        gatoY -= VELOCIDAD;
+        dibujarTodo();
     }
 }
  
 function moverAbajo(){
     if(gatoY<LIMITE_Y){
-        gatoY += 10;
-        limpiarCanva();
-        graficarGato();
-        graficarComida();
+        gatoY += VELOCIDAD;
+        dibujarTodo();
     }
 }
 

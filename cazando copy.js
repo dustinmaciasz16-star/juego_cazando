@@ -43,9 +43,20 @@ function dibujarTodo() {
     limpiarCanva();
     graficarGato();
     graficarComida();
+
+    if (detectarCollision){
+        alert("El gato se comio la comida");
+    }
 }
 
-
+function detectarCollision() {
+    if(
+        gatoX < comidaX + ANCHOCOMIDA &&
+        gatoX + ANCHOGATO > comidaX &&
+        gatoY < comidaY + ALTURACOMIDA &&
+        gatoY + ALTURAGATO > comidaY
+    );
+}
 
 
 function moverIzquierda(){

@@ -29,11 +29,30 @@ function graficarComida() {
 };
 
 function graficarGato() {
+    // Limitar eje X
+    if (gatoX < 0) {
+        gatoX = 0;
+    }
+    if (gatoX + ANCHOGATO > canvas.width) {
+        gatoX = canvas.width - ANCHOGATO;
+    }
+
+    // Limitar eje Y
+    if (gatoY < 0) {
+        gatoY = 0;
+    }
+    if (gatoY + ALTURAGATO > canvas.height) {
+        gatoY = canvas.height - ALTURAGATO;
+    }
     graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
 }; 
 
 function limpiarCanva() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function gatoComida() {
+
 }
 
 function moverIzquierda() {
@@ -77,6 +96,3 @@ function iniciarJuego(){
     graficarGato();
 }
  
-
-iniciarJuego();
-//window.onload = iniciarJuego;

@@ -16,6 +16,8 @@ let comidaY = 0;
 const ANCHOCOMIDA = 30;
 const ALTURACOMIDA = 30;
 
+let puntos = 0;
+
 
 document.getElementById("btnArriba").onclick = () => moverArriba();
 document.getElementById("btnAbajo").onclick = () => moverAbajo();
@@ -44,7 +46,12 @@ function dibujarTodo() {
     graficarGato();
     graficarComida();
     if (detectarCollision()){
-        alert("El gato se comio la comida");
+        console.log("El gato se comio la comida");
+
+        puntos ++;
+
+        mostrarEnSpan("puntos", puntos);
+
         comidaX = generarAleatorio(0, canvas.width - ANCHOCOMIDA);
         comidaY = generarAleatorio(0, canvas.height - ALTURACOMIDA);
     }
@@ -90,6 +97,9 @@ function moverAbajo(){
 
  
 function iniciarJuego(){
+    puntos = 0;
+    mostrarEnSpan("puntos", puntos);
+
     comidaX = (canvas.width) - (ANCHOGATO / 2);
     comidaY = (canvas.height) - (ALTURAGATO / 2);
 

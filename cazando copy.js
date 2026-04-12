@@ -17,6 +17,8 @@ const ANCHOCOMIDA = 30;
 const ALTURACOMIDA = 30;
 
 let puntos = 0;
+let intervalarTiempo;
+let time = 10;
 
 
 document.getElementById("btnArriba").onclick = () => moverArriba();
@@ -52,6 +54,10 @@ function dibujarTodo() {
 
         mostrarEnSpan("puntos", puntos);
 
+        tiempo ++;
+
+        mostrarEnSpan("tiempo", tiempo);
+
         comidaX = generarAleatorio(0, canvas.width - ANCHOCOMIDA);
         comidaY = generarAleatorio(0, canvas.height - ALTURACOMIDA);
     }
@@ -65,7 +71,6 @@ function detectarCollision() {
         gatoY + ALTURAGATO > comidaY
     );
 }
-
 
 function moverIzquierda(){
     if(gatoX>0){
@@ -98,13 +103,18 @@ function moverAbajo(){
  
 function iniciarJuego(){
     puntos = 0;
+    tiempo = 10;
+
     mostrarEnSpan("puntos", puntos);
+    mostrarEnSpan("tiempo", tiempo);
 
     comidaX = (canvas.width) - (ANCHOGATO / 2);
     comidaY = (canvas.height) - (ALTURAGATO / 2);
 
     gatoX = (canvas.width / 2) - (ANCHOGATO / 2);
     gatoY = (canvas.height / 2) - (ALTURAGATO / 2);
+
+    intervalarTiempo = setInterval(restarTiempo, 1000)
 
 
     graficarComida();

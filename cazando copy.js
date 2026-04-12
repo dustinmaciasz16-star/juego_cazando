@@ -3,8 +3,8 @@ let ctx = canvas.getContext("2d");
 // variables y contantes del Gato
 let gatoX = 0;
 let gatoY = 0;
-const ANCHOGATO = 50;
-const ALTURAGATO = 50;
+const ANCHOGATO = 25;
+const ALTURAGATO = 25;
 const VELOCIDAD = 10;
 const LIMITE_X = canvas.width - ANCHOGATO;
 const LIMITE_Y = canvas.height - ALTURAGATO;
@@ -13,12 +13,13 @@ const LIMITE_Y = canvas.height - ALTURAGATO;
 // variable y constantes de la comida
 let comidaX = 0;
 let comidaY = 0;
-const ANCHOCOMIDA = 30;
-const ALTURACOMIDA = 30;
+const ANCHOCOMIDA = 15;
+const ALTURACOMIDA = 15;
 
 let puntos = 0;
 let intervalarTiempo;
-let time = 10;
+let tiempo = 35;
+let juegoActivo = true;
 
 
 document.getElementById("btnArriba").onclick = () => moverArriba();
@@ -32,11 +33,11 @@ function graficarRectangulo(x, y, ancho, alto, color) {
 };
  
 function graficarComida() {
-    graficarRectangulo(comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA, "#ff0000");
+    graficarRectangulo(comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA, "#fa0000");
 };
 
 function graficarGato() {
-    graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#000000");
+    graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#ffe602");
 }; 
 
 function limpiarCanva() {
@@ -54,9 +55,11 @@ function dibujarTodo() {
 
         mostrarEnSpan("puntos", puntos);
 
-        tiempo ++;
-
-        mostrarEnSpan("tiempo", tiempo);
+        if(puntos >= 6){
+            alert("¡Ganaste!")
+            clearInterval(intervalarTiempo);
+            juegoActivo = false;
+        }
 
         comidaX = generarAleatorio(0, canvas.width - ANCHOCOMIDA);
         comidaY = generarAleatorio(0, canvas.height - ALTURACOMIDA);
@@ -73,6 +76,7 @@ function detectarCollision() {
 }
 
 function moverIzquierda(){
+    if(!juegoActivo) return;
     if(gatoX>0){
         gatoX-= VELOCIDAD;
         dibujarTodo();
@@ -80,6 +84,7 @@ function moverIzquierda(){
 }
  
 function moverDerecha(){
+    if(!juegoActivo) return;
     if (gatoX<LIMITE_X){
         gatoX += VELOCIDAD;
         dibujarTodo();
@@ -87,6 +92,7 @@ function moverDerecha(){
 }
  
 function moverArriba(){
+    if(!juegoActivo) return;
     if(gatoY>0){
         gatoY -= VELOCIDAD;
         dibujarTodo();
@@ -94,6 +100,7 @@ function moverArriba(){
 }
  
 function moverAbajo(){
+    if(!juegoActivo) return;
     if(gatoY<LIMITE_Y){
         gatoY += VELOCIDAD;
         dibujarTodo();
@@ -102,22 +109,27 @@ function moverAbajo(){
 
  
 function iniciarJuego(){
-    puntos = 0;
-    tiempo = 10;
+    clearInterval(intervalarTiempo);
+
+    puntos = 0
+    tiempo = 35;
+    juegoActivo = true;
 
     mostrarEnSpan("puntos", puntos);
     mostrarEnSpan("tiempo", tiempo);
 
-    comidaX = (canvas.width) - (ANCHOGATO / 2);
-    comidaY = (canvas.height) - (ALTURAGATO / 2);
+    comidaX = generarAleatorio(0, (canvas.width - ANCHOCOMIDA) / VELOCIDAD) * VELOCIDAD;
+    comidaY = generarAleatorio(0, (canvas.height - ALTURACOMIDA) / VELOCIDAD) * VELOCIDAD;
 
     gatoX = (canvas.width / 2) - (ANCHOGATO / 2);
     gatoY = (canvas.height / 2) - (ALTURAGATO / 2);
 
+    dibujarTodo();
+
     intervalarTiempo = setInterval(restarTiempo, 1000)
+}
 
-
-    graficarComida();
-    graficarGato();
+function reiniciarJuego(){
+    iniciarJuego();
 }
  

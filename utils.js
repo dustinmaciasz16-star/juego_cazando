@@ -17,4 +17,10 @@ function restarTiempo() {
         tiempo --;
         mostrarEnSpan("tiempo", tiempo);
     }
+
+    if(tiempo <= 0){
+        alert("Gamer Over");
+        clearInterval(intervalarTiempo);
+        juegoActivo = false;
+    }
 }

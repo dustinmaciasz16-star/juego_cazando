@@ -19,7 +19,7 @@ function restarTiempo() {
     }
 
     if(tiempo <= 0){
-        alert("Gamer Over");
+        mostrarEnSpan("mensaje", mensajes);
         clearInterval(intervalarTiempo);
         juegoActivo = false;
     }

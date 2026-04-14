@@ -19,6 +19,7 @@ const ALTURACOMIDA = 15;
 let puntos = 0;
 let intervalarTiempo;
 let juegoActivo = true;
+let mensajes = ""
 
 
 document.getElementById("btnArriba").onclick = () => moverArriba();
@@ -55,7 +56,7 @@ function dibujarTodo() {
         mostrarEnSpan("puntos", puntos);
 
         if(puntos >= 6){
-            alert("¡Ganaste!")
+            mostrarEnSpan("mensaje", mensajes);
             clearInterval(intervalarTiempo);
             juegoActivo = false;
         }

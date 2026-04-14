@@ -1,41 +1,71 @@
 body {
   text-align: center;
-  font-family: 'Segoe UI', Tahoma, sans-serif;
-  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
+  font-family: 'Orbitron', 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
   margin: 0;
   padding: 20px;
   color: #ffffff;
 }
 
+/* TITULO */
 h1 {
   margin-bottom: 5px;
-  font-size: 32px;
-  letter-spacing: 1px;
+  font-size: 34px;
+  letter-spacing: 2px;
 }
 
+/* PANEL DE PUNTOS Y TIEMPO */
 .panel {
   margin: 20px 0;
   font-size: 20px;
   display: flex;
   justify-content: center;
   gap: 40px;
-  background: rgba(255,255,255,0.05);
-  padding: 10px 20px;
+  background: rgba(0,0,0,0.4);
+  padding: 12px 25px;
   border-radius: 12px;
-  backdrop-filter: blur(5px);
+  backdrop-filter: blur(6px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.5);
 }
 
+/* ZONA DE JUEGO (canvas + controles) */
+.zona-juego {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  margin-top: 20px;
+}
+
+/* CANVAS DEL JUEGO */
 canvas {
-  background: #111;
-  border: 3px solid #00d4ff;
+  background: #020617;
+  border: 3px solid #22c55e;
   border-radius: 12px;
-  box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.6);
 }
 
+/* CONTROLES */
 .controles {
-  margin-top: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  border-radius: 12px;
+  background: rgba(0,0,0,0.4);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.5);
 }
 
+/* FILAS DE BOTONES */
+.fila {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+/* BOTONES */
 button {
   margin: 6px;
   padding: 12px 18px;
@@ -43,25 +73,29 @@ button {
   cursor: pointer;
   border: none;
   border-radius: 10px;
-  background: linear-gradient(135deg, #00d4ff, #0077ff);
+  background: linear-gradient(135deg, #2a4572, #322ffc);
   color: white;
   transition: all 0.2s ease;
-  box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.4);
 }
 
+/* HOVER BOTONES */
 button:hover {
   transform: translateY(-2px) scale(1.05);
-  background: linear-gradient(135deg, #00aaff, #0055ff);
+  background: linear-gradient(135deg, #2563eb, #228fce);
+  box-shadow: 0 6px 15px rgba(0,0,0,0.6);
 }
 
+/* CLICK BOTON */
 button:active {
   transform: scale(0.95);
 }
 
+/* MENSAJE */
 #mensaje {
-  font-size: 22px;
+  font-size: 24px;
   font-weight: bold;
   margin-top: 20px;
-  color: #ff4d4d;
-  text-shadow: 0 0 10px rgba(255, 77, 77, 0.7);
+  color: #ef4444;
+  text-shadow: 0 0 10px rgba(239, 68, 68, 0.7);
 }

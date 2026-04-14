@@ -18,7 +18,6 @@ const ALTURACOMIDA = 15;
 
 let puntos = 0;
 let intervalarTiempo;
-let tiempo = 35;
 let juegoActivo = true;
 
 

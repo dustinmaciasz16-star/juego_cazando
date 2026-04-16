@@ -1,9 +1,7 @@
 body {
   text-align: center;
   font-family: 'Orbitron', 'Segoe UI', sans-serif;
-  background: 
-    linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-    url("../img/fondo1.png");
+  background: rgba(77, 19, 1, 0.521);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -20,7 +18,14 @@ h1 {
 }
 
 /* PANEL DE PUNTOS Y TIEMPO */
+
+.contenidopanel{
+  display: flex;
+  justify-content: center;
+}
+
 .panel {
+  width: 250px;
   margin: 20px 0;
   font-size: 20px;
   display: flex;

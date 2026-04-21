@@ -60,6 +60,9 @@ function dibujarTodo() {
         puntos++;
         mostrarEnSpan("puntos", puntos);
 
+        tiempo = 15;
+        mostrarEnSpan("tiempo", tiempo);
+
         if (puntos >= 6) {
             mostrarEnSpan("mensaje", mensajes);
             clearInterval(intervalarTiempo);
@@ -129,7 +132,7 @@ function iniciarJuego() {
     ajustarCanvas(); // 🔥 clave para responsive
 
     puntos = 0;
-    tiempo = 35;
+    tiempo = 15;
     juegoActivo = true;
 
     mostrarEnSpan("puntos", puntos);

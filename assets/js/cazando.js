@@ -60,7 +60,7 @@ function dibujarTodo() {
         puntos++;
         mostrarEnSpan("puntos", puntos);
 
-        tiempo = 15;
+        tiempo --;
         mostrarEnSpan("tiempo", tiempo);
 
         if (puntos >= 6) {

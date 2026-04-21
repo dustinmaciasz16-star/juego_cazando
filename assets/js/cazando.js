@@ -10,8 +10,8 @@ function ajustarCanvas() {
 // ===== GATO =====
 let gatoX = 0;
 let gatoY = 0;
-const ANCHOGATO = 25;
-const ALTURAGATO = 25;
+const ANCHOGATO = 50;
+const ALTURAGATO = 50;
 const VELOCIDAD = 10;
 
 // ===== IMAGENES DEL GATO =====
@@ -32,8 +32,12 @@ let direccionGato = "down"; // dirección inicial
 // ===== COMIDA =====
 let comidaX = 0;
 let comidaY = 0;
-const ANCHOCOMIDA = 15;
-const ALTURACOMIDA = 15;
+const ANCHOCOMIDA = 25;
+const ALTURACOMIDA = 25;
+
+// ===== IMAGEN COMIDA =====
+let comidaImg = new Image();
+comidaImg.src = "assets/img/food.png";
 
 // ===== JUEGO =====
 let puntos = 0;
@@ -55,7 +59,7 @@ function graficarRectangulo(x, y, ancho, alto, color) {
 }
 
 function graficarComida() {
-    graficarRectangulo(comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA, "#fa0000");
+    ctx.drawImage(comidaImg, comidaX, comidaY, ANCHOCOMIDA, ALTURACOMIDA);
 }
 
 function graficarGato() {

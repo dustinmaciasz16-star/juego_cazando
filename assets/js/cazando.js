@@ -14,6 +14,21 @@ const ANCHOGATO = 25;
 const ALTURAGATO = 25;
 const VELOCIDAD = 10;
 
+// ===== IMAGENES DEL GATO =====
+let gatoImgUp = new Image();
+gatoImgUp.src = "assets/img/up.png";
+
+let gatoImgDown = new Image();
+gatoImgDown.src = "assets/img/down.png";
+
+let gatoImgLeft = new Image();
+gatoImgLeft.src = "assets/img/left.png";
+
+let gatoImgRight = new Image();
+gatoImgRight.src = "assets/img/right.png";
+
+let direccionGato = "down"; // dirección inicial
+
 // ===== COMIDA =====
 let comidaX = 0;
 let comidaY = 0;
@@ -44,7 +59,19 @@ function graficarComida() {
 }
 
 function graficarGato() {
-    graficarRectangulo(gatoX, gatoY, ANCHOGATO, ALTURAGATO, "#ffe602");
+    let imagenActual;
+
+    if (direccionGato === "up") {
+        imagenActual = gatoImgUp;
+    } else if (direccionGato === "down") {
+        imagenActual = gatoImgDown;
+    } else if (direccionGato === "left") {
+        imagenActual = gatoImgLeft;
+    } else if (direccionGato === "right") {
+        imagenActual = gatoImgRight;
+    }
+
+    ctx.drawImage(imagenActual, gatoX, gatoY, ANCHOGATO, ALTURAGATO);
 }
 
 function limpiarCanva() {
@@ -88,6 +115,8 @@ function detectarCollision() {
 function moverIzquierda() {
     if (!juegoActivo) return;
 
+    direccionGato="left";
+
     if (gatoX > 0) {
         gatoX -= VELOCIDAD;
         dibujarTodo();
@@ -96,6 +125,8 @@ function moverIzquierda() {
 
 function moverDerecha() {
     if (!juegoActivo) return;
+
+    direccionGato="right";
 
     let limiteX = canvas.width - ANCHOGATO;
 
@@ -107,6 +138,8 @@ function moverDerecha() {
 
 function moverArriba() {
     if (!juegoActivo) return;
+    
+    direccionGato="up";
 
     if (gatoY > 0) {
         gatoY -= VELOCIDAD;
@@ -116,6 +149,8 @@ function moverArriba() {
 
 function moverAbajo() {
     if (!juegoActivo) return;
+
+    direccionGato="down";
 
     let limiteY = canvas.height - ALTURAGATO;
 

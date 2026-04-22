@@ -12,7 +12,7 @@ let gatoX = 0;
 let gatoY = 0;
 const ANCHOGATO = 50;
 const ALTURAGATO = 50;
-const VELOCIDAD = 10;
+let VELOCIDAD = 10;
 
 // ===== IMAGENES DEL GATO =====
 let gatoImgUp = new Image();
@@ -91,6 +91,8 @@ function dibujarTodo() {
         puntos++;
         mostrarEnSpan("puntos", puntos);
 
+        VELOCIDAD += 1;
+
         tiempo --;
         mostrarEnSpan("tiempo", tiempo);
 
@@ -168,7 +170,7 @@ function moverAbajo() {
 function iniciarJuego() {
     clearInterval(intervalarTiempo);
 
-    ajustarCanvas(); // 🔥 clave para responsive
+    ajustarCanvas();
 
     puntos = 0;
     tiempo = 15;
@@ -184,7 +186,7 @@ function iniciarJuego() {
     gatoX = (canvas.width / 2) - (ANCHOGATO / 2);
     gatoY = (canvas.height / 2) - (ALTURAGATO / 2);
 
-    dibujarTodo();
+    actualizarJuego(); // 🔥 NUEVO
 
     intervalarTiempo = setInterval(restarTiempo, 1000);
 }
@@ -205,6 +207,39 @@ function restarTiempo() {
 function reiniciarJuego() {
     iniciarJuego();
 }
+
+function actualizarJuego() {
+    if (!juegoActivo) return;
+
+    dibujarTodo();
+    requestAnimationFrame(actualizarJuego);
+}
+
+document.addEventListener("keydown", function(event) {
+    if (!juegoActivo) return;
+
+    switch(event.key) {
+        case "ArrowUp":
+        case "w":
+            moverArriba();
+            break;
+
+        case "ArrowDown":
+        case "s":
+            moverAbajo();
+            break;
+
+        case "ArrowLeft":
+        case "a":
+            moverIzquierda();
+            break;
+
+        case "ArrowRight":
+        case "d":
+            moverDerecha();
+            break;
+    }
+});
 
 // ===== RESPONSIVE AL CAMBIAR TAMAÑO =====
 window.addEventListener("resize", () => {

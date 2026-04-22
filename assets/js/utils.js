@@ -11,16 +11,3 @@ function mostrarEnSpan(idSpan,valor){
     let componente=document.getElementById(idSpan);
     componente.textContent=valor;
 }
-
-function restarTiempo() {
-    if(tiempo > 0){
-        tiempo --;
-        mostrarEnSpan("tiempo", tiempo);
-    }
-
-    if(tiempo <= 0){
-        mostrarEnSpan("mensaje", mensajes);
-        clearInterval(intervalarTiempo);
-        juegoActivo = false;
-    }
-}
